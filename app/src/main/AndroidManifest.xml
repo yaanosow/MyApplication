@@ -21,7 +21,8 @@
 
         <activity
             android:name=".OrderActivity"
-            android:label="@string/action_create_order">
+            android:label="@string/action_create_order"
+            android:parentActivityName=".MainActivity">
         </activity>
     </application>
 
