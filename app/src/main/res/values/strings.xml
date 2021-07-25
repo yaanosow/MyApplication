@@ -9,4 +9,10 @@
         <item>Diavolo</item>
         <item>Fughi</item>
     </string-array>
+    <string-array name="titles">
+        <item>Hove</item>
+        <item>Pizzas</item>
+        <item>Pasta</item>
+        <item>Stores</item>
+    </string-array>
 </resources>
