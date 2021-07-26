@@ -15,20 +15,28 @@ import android.widget.ShareActionProvider;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 
+import androidx.drawerlayout.widget.DrawerLayout;
+
 public class MainActivity extends Activity {
 
     private ShareActionProvider shareActionProvider;
 
     private String[] titles;
     private ListView drawerList;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         titles = getResources().getStringArray(R.array.titles);
         drawerList = (ListView) findViewById(R.id.drawer);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_activated_1, titles));
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
+
+        if (savedInstanceState == null){
+            selectItem(0);
+        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -88,5 +96,18 @@ public class MainActivity extends Activity {
         ft.addToBackStack(null);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
+        setActionBarTitle(position);
+        drawerLayout.closeDrawer(drawerList);
     }
+
+    private void setActionBarTitle(int position){
+        String title;
+        if (position == 0){
+            title = getResources().getString(R.string.app_name);
+        }else{
+            title = titles[position];
+        }
+        getActionBar().setTitle(title);
+    }
+
 }
