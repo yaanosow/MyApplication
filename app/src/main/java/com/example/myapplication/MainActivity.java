@@ -1,7 +1,8 @@
 package com.example.myapplication;
 
 import android.app.Activity;
-
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,25 +13,25 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ShareActionProvider;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-
 import androidx.drawerlayout.widget.DrawerLayout;
 
 public class MainActivity extends Activity {
 
     private ShareActionProvider shareActionProvider;
-
+    private DrawerLayout drawerLayout;
     private String[] titles;
     private ListView drawerList;
-    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
         titles = getResources().getStringArray(R.array.titles);
+
         drawerList = (ListView) findViewById(R.id.drawer);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayout = (DrawerLayout) this.<View>findViewById(R.id.drawer_layout);
         drawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_activated_1, titles));
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
 
@@ -38,8 +39,7 @@ public class MainActivity extends Activity {
             selectItem(0);
         }
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
     }
 
     @Override
@@ -97,6 +97,8 @@ public class MainActivity extends Activity {
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
         setActionBarTitle(position);
+
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         drawerLayout.closeDrawer(drawerList);
     }
 

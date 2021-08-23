@@ -10,9 +10,11 @@
         <item>Fughi</item>
     </string-array>
     <string-array name="titles">
-        <item>Hove</item>
+        <item>Home</item>
         <item>Pizzas</item>
         <item>Pasta</item>
         <item>Stores</item>
     </string-array>
+    <string name="open_drawer">Open drawer</string>
+    <string name="close_drawer">Close drawer</string>
 </resources>

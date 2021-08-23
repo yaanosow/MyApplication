@@ -20,6 +20,5 @@
             android:dividerHeight="0dp"
             android:background="#ffffff"/>
 
-
 </androidx.drawerlayout.widget.DrawerLayout>
 
